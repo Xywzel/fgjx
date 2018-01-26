@@ -5,7 +5,7 @@ CC := g++
 SRCDIR := src
 OBJDIR := obj
 
-TARGET := game
+TARGET := game.out
 
 STD := -std=c++14
 DEBUG := -g
@@ -19,14 +19,14 @@ SOURCES = $(shell find $(SRCDIR) -type f -name *.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.cpp=.o))
 
 CFLAGS = $(STD) $(DEBUG) $(WARNINGS) $(SDL_COMP)
-LFLAGS = $(STD) $(WARNINGS) $(SDL_LINK)
+LFLAGS = $(STD) $(WARNINGS)
 
 all: $(TARGET)
 	@echo "Done"
 
 $(TARGET): $(OBJECTS)
 	@echo "Linking $< ..."
-	$(CC) $(LFLAGS) -o $(TARGET) $(OBJECTS)
+	$(CC) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(SDL_LINK)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@echo "Compiling $< ..."
