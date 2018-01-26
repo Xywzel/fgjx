@@ -1,14 +1,20 @@
+#pragma once
+
+#include <vector>
+#include <string>
+
 namespace Morse {
-    const Vector<std::String> alphabet = {
+    static std::vector<std::string> alphabet( {
         //A-Z
         ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..",
         "--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-",
-        "-.--","--.."
-        //Period character
-        ".-.-.-"
+        "-.--","--..",
         //0-9
         "-----",".----",
-        "..---","...--","....-",".....","-....","--...","---..","----."
-    };
-    std::String encode(std::String string);           
-}
+        "..---","...--","....-",".....","-....","--...","---..","----.",
+        //Period character
+        ".-.-.-"
+    });
+    std::string encode(std::string message);
+};
+
