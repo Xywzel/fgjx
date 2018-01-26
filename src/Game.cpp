@@ -2,13 +2,19 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "Input.h"
 
 Game::Game()
+	: running(true)
 {
 
 }
 
-Game::~Game(){}
+Game::~Game()
+{
+	SDL_DestroyWindow(window);
+	SDL_Quit();
+}
 
 bool Game::init()
 {
@@ -32,5 +38,39 @@ bool Game::init()
 
 void Game::run()
 {
-	SDL_Delay(2000);
+	while (running)
+	{
+		getEvents();
+		update();
+		render();
+		SDL_Delay(60);
+	}
+}
+
+void Game::getEvents()
+{
+	while (SDL_PollEvent(&e) != 0)
+	{
+		if(e.type == SDL_QUIT)
+		{
+			running = false;
+		}
+		else if(e.type == SDL_KEYDOWN)
+		{
+			Input::Key key = Input::getKeyFromEvent(e);
+			keysDown[(int) key] = true;
+		}
+	}
+}
+
+void Game::update()
+{
+	if(keysDown[(int) Input::Key::Esc]) running = false;
+
+}
+
+void Game::render()
+{
+	// SDL_BlitSurface(gXOut, NULL, surface, NULL);
+	SDL_UpdateWindowSurface(window);
 }

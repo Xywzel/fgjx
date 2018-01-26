@@ -9,7 +9,7 @@ TARGET := game.out
 
 STD := -std=c++14
 DEBUG := -g
-WARNINGS := -pedantic -Wall -Werror
+WARNINGS := -pedantic -Wall -Wextra
 OPTIMIZE := -march=native -O3
 
 SDL_COMP = $(shell sdl2-config --cflags)
