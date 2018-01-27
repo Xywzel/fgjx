@@ -9,7 +9,10 @@ Level::Level()
 
 Level::~Level()
 {
-	SDL_DestroyTexture(background);
+	if(background != NULL)
+	{
+		background->free();
+	}
 }
 
 void Level::update(float deltaTime)
@@ -38,7 +41,8 @@ void Level::render(SDL_Renderer* renderer)
 	if(background == NULL)
 	{
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
-		background = Utils::LoadTexture("troll.bmp", renderer);
+		background = LTexture(renderer);
 	}
+	background.render(0,0,);
 }
 
