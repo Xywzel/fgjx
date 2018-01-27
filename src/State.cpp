@@ -12,7 +12,7 @@ State::State()
 	mainMenu = new MainMenu;
 	pauseMenu = new PauseMenu;
 	scoreScreen = new ScoreScreen;
-	level = Level::createLevel(0);
+	level = new Level; //::createLevel(0);
 }
 
 State::~State()
@@ -128,5 +128,5 @@ void State::nextLevel()
 {
 	levelNumber++;
 	delete level;
-	level = Level::createLevel(levelNumber);
+	level = new Level();//::createLevel(levelNumber);
 }

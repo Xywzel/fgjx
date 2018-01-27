@@ -1,13 +1,13 @@
 #pragma once
 #include <SDL2/SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
 
 namespace Utils
 {
-    SDL_Texture* LoadTexture(std::string path, SDL_Renderer* renderer)
-	{      
+	SDL_Texture* LoadTexture(std::string path, SDL_Renderer* renderer)
+	{
 		SDL_Texture* newTexture  = NULL;
 		SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 		if( loadedSurface == NULL )

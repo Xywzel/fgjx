@@ -11,7 +11,7 @@ STD := -std=c++14
 DEBUG := -g
 WARNINGS = -pedantic -Wall -Wextra
 OPTIMIZE = -march=native -O3
-SDL_LIBS = -lSDL_image 
+SDL_LIBS = -lSDL2_image
 
 SDL_COMP = $(shell sdl2-config --cflags)
 SDL_LINK = $(shell sdl2-config --libs)
@@ -27,7 +27,7 @@ all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
 	@echo "Linking $< ..."
-	$(CC) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(SDL_LINK)
+	$(CC) -o $(TARGET) $(OBJECTS) $(LFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	@echo "Compiling $< ..."
