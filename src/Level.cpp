@@ -17,15 +17,15 @@ int Level::getScoreIncrease(){
 return 0;
 }
 
-bool menuOpened(){
+bool Level::menuOpened(){
     return false;
 }
 
-bool finished(){
+bool Level::finished(){
     return false;
 }
 
-bool isGameOver(){
+bool Level::isGameOver(){
     return false;
 }
 
