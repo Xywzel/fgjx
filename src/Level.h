@@ -1,5 +1,7 @@
 #pragma once
 #include "LTexture.h"
+#include "Player.h"
+#include "Object.h"
 #include <vector>
 
 struct SDL_Texture;

@@ -9,9 +9,9 @@ Level::Level()
 
 Level::~Level()
 {
-	if(background != NULL)
+	if(background.ready)
 	{
-		background->free();
+		background.free();
 	}
 }
 
@@ -38,11 +38,11 @@ bool Level::isGameOver(){
 
 void Level::render(SDL_Renderer* renderer)
 {
-	if(background == NULL)
+	if(!background.ready)
 	{
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
-		background = LTexture(renderer);
+		background.init(renderer, "background.png");
 	}
-	background.render(0,0,);
+	background.render(0,0);
 }
 
