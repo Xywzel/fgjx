@@ -17,15 +17,15 @@ MainMenu::~MainMenu()
 
 void MainMenu::render(SDL_Renderer* renderer)
 {
-	// if(!background.ready) background.init(renderer, "background.png");
+	if(!background.ready) background.init(renderer, "background.png");
 	if(!buttonStart.ready) buttonStart.init(renderer, "start.png");
 	if(!buttonQuit.ready) buttonQuit.init(renderer, "quit.png");
 	if(!selection.ready) selection.init(renderer, "select.png");
 
-	//background.render(0.0f, 0.0f, 0.0f, 0.0f);
+	background.render(0.0f, 0.0f, 1.0f, 1.0f);
 	buttonStart.render(0.3f, 0.3f, 0.4f, 0.2f);
 	buttonQuit.render(0.3f, 0.6f, 0.4f, 0.2f);
-	if(highlighted == QuitButton)
+	if(highlighted == StartButton)
 		selection.render(0.1f, 0.3f, 0.3f, 0.2f);
 	else
 		selection.render(0.1f, 0.6f, 0.3f, 0.2f);
