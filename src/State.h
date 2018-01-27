@@ -4,14 +4,14 @@ class PauseMenu;
 class MainMenu;
 class ScoreScreen;
 class Level;
-struct SDL_Rnderer;
+struct SDL_Renderer;
 
 class State {
 	public:
 		State();
 		~State();
 		void update(float deltaTime);
-		void render(SDL_Rnderer* renderer);
+		void render(SDL_Renderer* renderer);
 		bool gameOver();
 	private:
 		void startGame();

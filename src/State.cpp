@@ -1,5 +1,7 @@
 #include "State.h"
 
+#include <SDL2/SDL.h>
+
 #include "MainMenu.h"
 #include "ScoreScreen.h"
 #include "PauseMenu.h"
@@ -98,7 +100,7 @@ void State::update(float deltaTime)
 	}
 }
 
-void State::render(SDL_Rnderer* renderer)
+void State::render(SDL_Renderer* renderer)
 {
 	if (inMainMenu)
 		mainMenu->render(renderer);

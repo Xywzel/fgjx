@@ -11,6 +11,6 @@ class Menu
 		virtual void update() = 0;
 		bool isOpen();
 		virtual void show(int arg = 0);
-	private:
+	protected:
 		bool open;
 };
