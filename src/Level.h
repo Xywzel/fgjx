@@ -1,13 +1,18 @@
 #pragma once
+#include <SDL2/SDL.h>
 
 class Player;
 class Object;
 
 class Level
 {
+    SDL_Texture* background = NULL;
+	SDL_Renderer* renderer = NULL;
 	public:
-		virtual void update(); // Draw level and all object on it
-		virtual void render(); // Update level and all objects on it
+        Level();
+        ~Level();
+		virtual void update(); // Update level and all objects on it 
+		virtual void render(SDL_Window* window); // Draw level and all object on it
 		virtual int getScoreIncrease(); // If we keep score, change since last call
 
 		virtual bool menuOpened(); // Has player asked to open pause menu, clear on check

@@ -32,21 +32,7 @@ bool Game::init()
 	surface = SDL_GetWindowSurface(window);
 	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
 	SDL_UpdateWindowSurface(window);
-
-    imageSurface = SDL_LoadBMP( "troll.bmp" );
-    if( imageSurface == NULL )
-    {
-        std::cout <<  "Unable to load image!" <<  SDL_GetError() << std::endl;
-    }
-    else
-    {
-        optimizedSurface = SDL_ConvertSurface(imageSurface, surface->format, NULL);
-        if (optimizedSurface == NULL)
-        {
-            std::cout << "Unable to optimize image! << SDL_GetError()" << std::endl;
-        }
-        SDL_FreeSurface(imageSurface);
-    }
+	level = Level();
 	return true;
 }
 
@@ -85,12 +71,14 @@ void Game::update()
 
 void Game::render()
 {
-    stretchRect.x = 0;
-    stretchRect.y = 0;
-    stretchRect.w = screenWidth;
-    stretchRect.h = screenHeight;
-    SDL_BlitScaled( optimizedSurface, NULL, surface, &stretchRect );
+	
+   // stretchRect.x = 0;
+   // stretchRect.y = 0;
+   // stretchRect.w = screenWidth;
+   // stretchRect.h = screenHeight;
+   // SDL_BlitScaled( optimizedSurface, NULL, surface, &stretchRect );
 	//SDL_BlitSurface(optimizedSurface, NULL, surface, NULL);
+	level.render(window);
 	SDL_UpdateWindowSurface(window);
 
 }
