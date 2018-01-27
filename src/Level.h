@@ -14,6 +14,6 @@ class Level
 		virtual bool finished(); // Level is completed and next one should be started
 		virtual bool isGameOver(); // Level has failed and game should end
 
-		static Level createLevel(int level); // Returns new level
+		static Level* createLevel(int level); // Returns new level
 
 };

@@ -3,6 +3,8 @@
 class Menu
 {
 	public:
+		Menu();
+		virtual ~Menu();
 		virtual void render();
 		virtual void update();
 		virtual bool isOpen();

@@ -5,6 +5,8 @@
 class MainMenu : public Menu
 {
 	public:
+		MainMenu();
+		virtual ~MainMenu();
 		virtual void render();
 		virtual void update();
 		virtual bool isOpen();

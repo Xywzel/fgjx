@@ -5,6 +5,8 @@
 class PauseMenu : public Menu
 {
 	public:
+		PauseMenu();
+		virtual ~PauseMenu();
 		virtual void render();
 		virtual void update();
 		virtual bool isOpen();

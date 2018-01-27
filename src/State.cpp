@@ -80,7 +80,7 @@ void State::update(float deltaTime)
 
 	else if(inLevel)
 	{
-		level->update();
+		level->update(deltaTime);
 		score += level->getScoreIncrease();
 		if(level->menuOpened())
 		{
