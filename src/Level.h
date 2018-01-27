@@ -9,6 +9,8 @@ class Object;
 class Level
 {
 	SDL_Texture* background = NULL;
+	bool completed;
+	bool failed;
 	public:
 		Level();
 		virtual ~Level();
