@@ -12,17 +12,17 @@ PauseMenu::~PauseMenu()
 
 void PauseMenu::render(SDL_Renderer* renderer)
 {
-	//if(!background.ready) background.init(renderer, "pauseBackground.png");
+	if(!background.ready) background.init(renderer, "background.png");
 	if(!menuButton.ready) menuButton.init(renderer, "menu.png");
 	if(!continueButton.ready) continueButton.init(renderer, "continue.png");
 	if(!selection.ready) selection.init(renderer, "select.png");
-	//background.render(0, 0);
-	menuButton.render(300, 100);
-	continueButton.render(300, 400);
+	background.render(0.0f, 0.0f, 1.0f, 1.0f);
+	menuButton.render(0.3f, 0.2f, 0.4f, 0.2f);
+	continueButton.render(0.3f, 0.6f, 0.4f, 0.2f);
 	if(current == MenuButton)
-		selection.render(100, 100);
+		selection.render(0.1f, 0.2f, 0.3f, 0.2f);
 	else
-		selection.render(100, 400);
+		selection.render(0.1f, 0.6f, 0.3f, 0.2f);
 }
 
 void PauseMenu::handleEvent(SDL_Event& e)
