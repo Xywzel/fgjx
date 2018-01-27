@@ -2,6 +2,7 @@
 #include <SDL2/SDL.h>
 
 MainMenu::MainMenu()
+	: highlighted(None)
 {
 }
 
@@ -16,6 +17,7 @@ void MainMenu::render(SDL_Renderer* renderer)
 
 void MainMenu::update()
 {
+	
 }
 
 bool MainMenu::shouldStart()

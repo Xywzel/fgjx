@@ -10,6 +10,13 @@ class MainMenu : public Menu
 		virtual void render(SDL_Renderer* renderer);
 		virtual void update();
 		bool shouldStart();
+	private:
+		enum Button {
+			StartButton,
+			QuitButton,
+			None,
+		};
+		Button highlighted;
 };
 
 

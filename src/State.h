@@ -5,11 +5,13 @@ class MainMenu;
 class ScoreScreen;
 class Level;
 struct SDL_Renderer;
+union SDL_Event;
 
 class State {
 	public:
 		State();
 		~State();
+		void handleEvent(SDL_Event &e);
 		void update(float deltaTime);
 		void render(SDL_Renderer* renderer);
 		bool gameOver();

@@ -61,10 +61,9 @@ void Game::getEvents()
 		{
 			running = false;
 		}
-		else if(e.type == SDL_KEYDOWN)
+		else if (e.type == SDL_KEYDOWN)
 		{
-			Input::Key key = Input::getKeyFromEvent(e);
-			keysDown[(int) key] = true;
+			state->handleEvent(e);
 		}
 	}
 }

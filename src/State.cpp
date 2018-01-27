@@ -32,6 +32,19 @@ State::~State()
 	delete level;
 }
 
+void State::handleEvent(SDL_Event& e)
+{
+	if(inMainMenu)
+		mainMenu->handleEvent(e);
+	else if(inPauseMenu)
+		pauseMenu->handleEvent(e);
+	else if(inScoreScreen)
+		scoreScreen->handleEvent(e);
+	else if(inLevel)
+		level->handleEvent(e);
+}
+
+
 void State::update(float deltaTime)
 {
 	if(inMainMenu)

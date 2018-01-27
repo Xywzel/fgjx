@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include <SDL2/SDL.h>
 
 Menu::Menu()
 	: open(false)
@@ -6,6 +7,10 @@ Menu::Menu()
 }
 
 Menu::~Menu()
+{
+}
+
+void Menu::handleEvent(SDL_Event& /*e*/)
 {
 }
 
