@@ -23,12 +23,12 @@ void MainMenu::render(SDL_Renderer* renderer)
 	if(!selection.ready) selection.init(renderer, "select.png");
 
 	//background.render(0,0);
-	buttonStart.render(100, 100);
-	buttonQuit.render(100, 400);
+	buttonStart.render(300, 100);
+	buttonQuit.render(300, 400);
 	if(highlighted == QuitButton)
-		selection.render(50, 400);
+		selection.render(100, 400);
 	else
-		selection.render(50, 100);
+		selection.render(100, 100);
 }
 
 void MainMenu::handleEvent(SDL_Event& event)

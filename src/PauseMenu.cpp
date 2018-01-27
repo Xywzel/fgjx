@@ -17,12 +17,12 @@ void PauseMenu::render(SDL_Renderer* renderer)
 	if(!continueButton.ready) continueButton.init(renderer, "continue.png");
 	if(!selection.ready) selection.init(renderer, "select.png");
 	//background.render(0, 0);
-	menuButton.render(300, 200);
-	continueButton.render(300, 600);
+	menuButton.render(300, 100);
+	continueButton.render(300, 400);
 	if(current == MenuButton)
 		selection.render(100, 200);
 	else
-		selection.render(100, 600);
+		selection.render(100, 400);
 }
 
 void PauseMenu::handleEvent(SDL_Event& e)
