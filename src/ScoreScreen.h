@@ -5,11 +5,11 @@
 class ScoreScreen : public Menu
 {
 	public:
-		virtual void render();
+		ScoreScreen();
+		virtual ~ScoreScreen();
+		virtual void render(SDL_Renderer* renderer);
 		virtual void update();
-		virtual bool isOpen();
 		virtual void show(int arg = 0);
 	private:
-		bool open;
 		int score;
 };
