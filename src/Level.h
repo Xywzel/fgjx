@@ -1,4 +1,8 @@
 #pragma once
+#include "LTexture.h"
+#include "Player.h"
+#include "Object.h"
+#include <vector>
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -9,9 +13,12 @@ class Object;
 
 class Level
 {
-	SDL_Texture* background;
+	LTexture background;
 	bool completed;
 	bool failed;
+	std::vector<Object> doors;
+	Player player;
+	std::string message;
 	public:
 		Level();
 		virtual ~Level();
@@ -25,5 +32,4 @@ class Level
 		virtual bool isGameOver(); // Level has failed and game should end
 
 		static Level* createLevel(int level); // Returns new level
-
 };
