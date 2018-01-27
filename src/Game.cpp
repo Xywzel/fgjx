@@ -38,6 +38,15 @@ bool Game::init()
     {
         std::cout <<  "Unable to load image!" <<  SDL_GetError() << std::endl;
     }
+    else
+    {
+        optimizedSurface = SDL_ConvertSurface(imageSurface, surface->format, NULL);
+        if (optimizedSurface == NULL)
+        {
+            std::cout << "Unable to optimize image! << SDL_GetError()" << std::endl;
+        }
+        SDL_FreeSurface(imageSurface);
+    }
 	return true;
 }
 
@@ -76,7 +85,12 @@ void Game::update()
 
 void Game::render()
 {
-	SDL_BlitSurface(imageSurface, NULL, surface, NULL);
+    stretchRect.x = 0;
+    stretchRect.y = 0;
+    stretchRect.w = screenWidth;
+    stretchRect.h = screenHeight;
+    SDL_BlitScaled( optimizedSurface, NULL, surface, &stretchRect );
+	//SDL_BlitSurface(optimizedSurface, NULL, surface, NULL);
 	SDL_UpdateWindowSurface(window);
 
 }

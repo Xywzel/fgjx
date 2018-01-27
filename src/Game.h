@@ -15,7 +15,9 @@ class Game
 		SDL_Window* window = NULL;
 		SDL_Surface* surface = NULL;
         SDL_Surface* imageSurface = NULL;
+        SDL_Surface* optimizedSurface = NULL;
 		SDL_Event e;
+		SDL_Rect stretchRect;
 		bool running;
 
 		const char* gameTitle = "The Game";
