@@ -2,6 +2,8 @@
 #include "Utils.h"
 
 Level::Level()
+	: completed(false)
+	, failed(false)
 {
 }
 
@@ -24,11 +26,11 @@ bool Level::menuOpened(){
 }
 
 bool Level::finished(){
-    return false;
+    return completed;
 }
 
 bool Level::isGameOver(){
-    return false;
+    return failed;
 }
 
 void Level::render(SDL_Renderer* renderer)
