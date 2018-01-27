@@ -27,7 +27,7 @@ void ScoreScreen::render(SDL_Renderer* renderer)
 
 void ScoreScreen::handleEvent(SDL_Event& e)
 {
-	if(event.type == SDL_KEYDOWN)
+	if(e.type == SDL_KEYDOWN)
 	{
 		open = false;
 	}
