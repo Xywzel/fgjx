@@ -40,7 +40,6 @@ void Level::render(SDL_Renderer* renderer)
 {
 	if(!background.ready)
 	{
-		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		background.init(renderer, "background.png");
 	}
 	background.render(0,0);
