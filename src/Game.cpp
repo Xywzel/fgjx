@@ -27,16 +27,24 @@ bool Game::init()
 		std::cout << "Error: SDL could not be initialized. SDL_Error " << SDL_GetError() << std::endl;
 		return false;
 	}
+	if(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	{
+		std::cout << "Warning: Linear texture filtering not enabled!" << std::endl;
+	}
+
 	window = SDL_CreateWindow(gameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight, SDL_WINDOW_SHOWN);
 	if(!window)
 	{
 		std::cout << "Error: SDL could not create window, SDL_Error " << SDL_GetError() << std::endl;
 		return false;
 	}
-	surface = SDL_GetWindowSurface(window);
-	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
-	SDL_UpdateWindowSurface(window);
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	if(!renderer)
+	{
+		std::cout << "Error: SDL could not create renderer, SDL_Error " << SDL_GetError() << std::endl;
+		return false;
+	}
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	return true;
 }
 
@@ -83,7 +91,9 @@ void Game::update()
 
 void Game::render()
 {
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(renderer);
 	state->render(renderer);
-	SDL_UpdateWindowSurface(window);
+	SDL_RenderPresent(renderer);
 }
 
