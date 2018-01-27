@@ -2,8 +2,8 @@
 #include "LTexture.h"
 #include "Player.h"
 #include "Object.h"
-#include "tinysound.h"
 #include <vector>
+#include "SDL2/SDL_mixer.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -19,13 +19,12 @@ class Level
 	bool failed;
 	bool pause;
 	std::vector<Object> doors;
-	tsContext* ctx;
-	tsLoadedSound loaded;
-	tsPlaySoundDef def;
-	tsPlayingSound* sound;
 	Player player;
+	Mix_Music* music;
 	public:
 		std::string message;
+		std::string morseCode;
+		std::vector<float> signals;
 		Level();
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);

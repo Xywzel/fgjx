@@ -1,7 +1,9 @@
 #include "Level.h"
+#include "Morse.h"
 #include "SDL2/SDL.h"
+#include <SDL2/SDL_image.h>
+#include <iostream>
 
-#include "Utils.h"
 
 Level::Level()
 	: completed(false)
@@ -10,14 +12,41 @@ Level::Level()
 {
 	player.setXY(50, 50);
 	message = "No fucking clue.";
-	ctx = tsMakeContext(0, 44000, 15, 5, 5);
-	loaded = tsLoadWAV( "path_to_file/filename.wav" );
-	def = tsMakeDef( &loaded );
+	//Initialize SDL_mixer
+	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+	{
+		std::cout <<  "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << std::endl;
+	}
+	//Load music
+	music = Mix_LoadMUS( "noise.wav" );
+	if( music == NULL )
+	{
+		std::cout << "Failed to load beat music! SDL_mixer Error: " << Mix_GetError() << std::endl;
+	}
+	morseCode = Morse::encode(message);
+    for (std::string::iterator it=morseCode.begin(); it!=morseCode.end();++it)
+	{
+		switch(*it)
+		{
+			case '.':
+				signals.push_back(Morse::dot);
+				break;
+			case '-':
+				signals.push_back(Morse::dash);
+				break;
+			case ' ':
+				signals.push_back(Morse::pause);
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 Level::~Level()
 {
-	tsShutdownContext(ctx);
+	Mix_FreeMusic(music);
+	music = NULL;
 }
 
 void Level::handleEvent(SDL_Event& e)
@@ -36,7 +65,28 @@ void Level::handleEvent(SDL_Event& e)
 
 void Level::update(float deltaTime)
 {
-	tsPlayingSound* sound = tsPlaySound( ctx, def );
+	if( Mix_PlayingMusic() == 0 )
+	{
+		//Play the noise
+		Mix_PlayMusic( music, -1 );
+	}
+	//If noise is being played
+
+	else
+	{
+		//If the noise is paused
+		if( Mix_PausedMusic() == 1 )
+		{
+			//Resume the noise
+			Mix_ResumeMusic();
+		}
+		//If the noise is playing
+		else
+		{
+			//Pause the noise
+			Mix_PauseMusic();
+		}
+	}
 }
 
 int Level::getScoreIncrease(){
