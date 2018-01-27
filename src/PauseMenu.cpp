@@ -9,7 +9,7 @@ PauseMenu::~PauseMenu()
 {
 }
 
-void PauseMenu::renderer(SDL_Renderer* renderer)
+void PauseMenu::render(SDL_Renderer* renderer)
 {
 }
 

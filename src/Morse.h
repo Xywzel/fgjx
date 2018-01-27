@@ -16,5 +16,5 @@ namespace Morse {
         ".-.-.-"
     });
     std::string encode(std::string message);
-};
+}
 
