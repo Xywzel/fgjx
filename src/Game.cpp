@@ -3,17 +3,21 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "Input.h"
+#include "State.h"
 
 Game::Game()
 	: running(true)
+	, startTime(0)
 {
-
+	state = new State();
 }
 
 Game::~Game()
 {
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+	delete state;
 }
 
 bool Game::init()
@@ -32,12 +36,14 @@ bool Game::init()
 	surface = SDL_GetWindowSurface(window);
 	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
 	SDL_UpdateWindowSurface(window);
-	level = Level();
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	return true;
 }
 
 void Game::run()
 {
+	startTime = SDL_GetTicks();
+	lastTime = startTime;
 	while (running)
 	{
 		getEvents();
@@ -65,21 +71,24 @@ void Game::getEvents()
 
 void Game::update()
 {
-	if(keysDown[(int) Input::Key::Esc]) running = false;
-
+	if(keysDown[(int) Input::Key::Esc])
+	{
+		running = false;
+		return;
+	}
+	uint32_t currentTime = SDL_GetTicks();
+	float dt = (float) (lastTime - currentTime) / 1000.0f;
+	lastTime = currentTime;
+	state->update(dt);
+	if(state->gameOver())
+	{
+		running = false;
+	}
 }
 
 void Game::render()
 {
-	
-   // stretchRect.x = 0;
-   // stretchRect.y = 0;
-   // stretchRect.w = screenWidth;
-   // stretchRect.h = screenHeight;
-   // SDL_BlitScaled( optimizedSurface, NULL, surface, &stretchRect );
-	//SDL_BlitSurface(optimizedSurface, NULL, surface, NULL);
-	level.render(window);
+	state->render(renderer);
 	SDL_UpdateWindowSurface(window);
-
 }
 

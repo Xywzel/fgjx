@@ -7,7 +7,7 @@ Level::Level()
 
 Level::~Level()
 {
-    SDL_DestroyTexture(background);
+	SDL_DestroyTexture(background);
 }
 
 void Level::update()
@@ -46,4 +46,9 @@ void Level::render(SDL_Window* window)
 			
 		}
 	}
+}
+
+void Level::update(float deltaTime)
+{
+
 }

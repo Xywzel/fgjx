@@ -4,13 +4,14 @@ class PauseMenu;
 class MainMenu;
 class ScoreScreen;
 class Level;
+struct SDL_Rnderer;
 
 class State {
 	public:
 		State();
 		~State();
 		void update(float deltaTime);
-		void render();
+		void render(SDL_Rnderer* renderer);
 		bool gameOver();
 	private:
 		void startGame();
@@ -21,8 +22,8 @@ class State {
 		bool inScoreScreen = false;
 		int levelNumber = 0;
 		int score = 0;
-		MainMenu& mainMenu;
-		PauseMenu& pauseMenu;
-		ScoreScreen& scoreScreen;
-		Level& level;
+		MainMenu* mainMenu;
+		PauseMenu* pauseMenu;
+		ScoreScreen* scoreScreen;
+		Level* level;
 };

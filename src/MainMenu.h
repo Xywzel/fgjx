@@ -5,13 +5,11 @@
 class MainMenu : public Menu
 {
 	public:
-		virtual void render();
+		MainMenu();
+		virtual ~MainMenu();
+		virtual void render(SDL_Renderer* renderer);
 		virtual void update();
-		virtual bool isOpen();
-		virtual void show(int arg = 0);
 		bool shouldStart();
-	private:
-		bool open;
 };
 
 
