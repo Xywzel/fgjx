@@ -5,14 +5,13 @@
 class LTexture
 {
 	public:
-		//Initializes variables
-		LTexture(SDL_Renderer* sdl_renderer);
+		LTexture();
 
 		//Deallocates memory
 		~LTexture();
 
-		//Loads image at specified path
-		bool loadFromFile( std::string path );
+		//Initializes variables
+		bool init(SDL_Renderer* renderer, std::string path );
 
 		//Deallocates texture
 		void free();
@@ -24,12 +23,12 @@ class LTexture
 		int getWidth();
 		int getHeight();
 
+		bool ready;
 	private:
-		//The actual hardware texture
-		SDL_Texture* mTexture;
-
 		//Image dimensions
 		int mWidth;
 		int mHeight;
-		SDL_Renderer* renderer = NULL;
+		//The actual hardware texture
+		SDL_Texture* mTexture;
+		SDL_Renderer* renderer;
 };

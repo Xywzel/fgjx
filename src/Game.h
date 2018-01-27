@@ -25,8 +25,8 @@ class Game
 		uint32_t lastTime;
 
 		const char* gameTitle = "The Game";
-		const int screenWidth = 640;
-		const int screenHeight = 480;
+		const int screenWidth = 1280;
+		const int screenHeight = 800;
 
 		bool keysDown[Input::KeyCount] = {false};
 

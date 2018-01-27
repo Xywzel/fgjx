@@ -1,11 +1,12 @@
 #include "LTexture.h"
 
-LTexture::LTexture(SDL_Renderer* sdl_renderer)
+LTexture::LTexture()
 {
-	renderer = sdl_renderer;
-	mTexture = NULL;
+	ready = false;
 	mWidth = 0;
 	mHeight = 0;
+	mTexture = NULL;
+	renderer = NULL;
 }
 
 LTexture::~LTexture()
@@ -13,9 +14,10 @@ LTexture::~LTexture()
 	free();
 }
 
-bool LTexture::loadFromFile( std::string path )
+bool LTexture::init(SDL_Renderer* sdl_renderer, std::string path)
 {
 	free();
+	renderer = sdl_renderer;
 
 	//The final texture
 	SDL_Texture* newTexture = NULL;
@@ -48,6 +50,9 @@ bool LTexture::loadFromFile( std::string path )
 	//Return success
 	mTexture = newTexture;
 	SDL_SetTextureBlendMode(mTexture, SDL_BLENDMODE_BLEND);
+
+	ready = true;
+
 	return mTexture != NULL;
 }
 
