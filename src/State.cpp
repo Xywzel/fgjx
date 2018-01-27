@@ -1,5 +1,7 @@
 #include "State.h"
 
+#include <iostream>
+
 #include <SDL2/SDL.h>
 
 #include "MainMenu.h"
@@ -121,7 +123,7 @@ void State::render(SDL_Renderer* renderer)
 
 bool State::gameOver()
 {
-	return (!inMainMenu || !inPauseMenu || !inScoreScreen || !inLevel);
+	return !(inMainMenu || inPauseMenu || inScoreScreen || inLevel);
 }
 
 void State::startGame()

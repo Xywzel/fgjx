@@ -18,8 +18,8 @@ class State {
 		void nextLevel();
 		bool inMainMenu;
 		bool inPauseMenu;
-		bool inLevel;
 		bool inScoreScreen;
+		bool inLevel;
 		int levelNumber;
 		int score;
 		MainMenu* mainMenu;
