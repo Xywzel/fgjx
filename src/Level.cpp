@@ -5,6 +5,8 @@ Level::Level()
 	: completed(false)
 	, failed(false)
 {
+	player.setXY(50, 50);
+	message = "No fucking clue.";
 }
 
 Level::~Level()
