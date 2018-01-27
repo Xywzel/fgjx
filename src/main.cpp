@@ -4,10 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	//Game game;
-	//game.run();
-
-    std::string testString = "HELLO WORLD";
-    std::cout << Morse::encode(testString) << std::endl;
-    return 0;
+	Game game;
+	if(game.init())
+		game.run();
 }
