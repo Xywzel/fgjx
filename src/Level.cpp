@@ -9,14 +9,13 @@ Level::Level()
 	, failed(false)
 	, pause(false)
 {
+	player.setXY(50, 50);
+	message = "No fucking clue.";
 }
 
 Level::~Level()
 {
-	if(background.ready)
-	{
-		background.free();
-	}
+
 }
 
 void Level::handleEvent(SDL_Event& e)
@@ -62,6 +61,7 @@ void Level::render(SDL_Renderer* renderer)
 	{
 		background.init(renderer, "background.png");
 	}
-	background.render(0,0);
+	background.render(0,0, 1.0f, 1.0f);
+	player.render(renderer);
 }
 

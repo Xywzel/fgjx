@@ -19,8 +19,8 @@ class Level
 	bool pause;
 	std::vector<Object> doors;
 	Player player;
-	std::string message;
 	public:
+		std::string message;
 		Level();
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);
