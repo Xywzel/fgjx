@@ -7,7 +7,6 @@
 namespace Utils
 {
 	
-	SDL_Renderer* gRenderer = NULL;
     SDL_Texture* LoadTexture(std::string path, SDL_Renderer* renderer)
 	{      
 		SDL_Texture* newTexture  = NULL;

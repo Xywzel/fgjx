@@ -10,6 +10,25 @@ Level::~Level()
     SDL_DestroyTexture(background);
 }
 
+void Level::update()
+{}
+
+int Level::getScoreIncrease(){
+return 0;
+}
+
+bool menuOpened(){
+    return false;
+}
+
+bool finished(){
+    return false;
+}
+
+bool isGameOver(){
+    return false;
+}
+
 void Level::render(SDL_Window* window)
 {
 	if(background == NULL)
