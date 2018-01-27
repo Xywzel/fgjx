@@ -11,10 +11,7 @@ Level::Level()
 
 Level::~Level()
 {
-	if(background.ready)
-	{
-		background.free();
-	}
+
 }
 
 void Level::update(float deltaTime)
@@ -45,5 +42,6 @@ void Level::render(SDL_Renderer* renderer)
 		background.init(renderer, "background.png");
 	}
 	background.render(0,0);
+	player.render(renderer);
 }
 
