@@ -98,16 +98,16 @@ void State::update(float deltaTime)
 	}
 }
 
-void State::render()
+void State::render(SDL_Rnderer* renderer)
 {
 	if (inMainMenu)
-		mainMenu->render();
+		mainMenu->render(renderer);
 	else if (inPauseMenu)
-		pauseMenu->render();
+		pauseMenu->render(renderer);
 	else if (inScoreScreen)
-		scoreScreen->render();
+		scoreScreen->render(renderer);
 	else if (inLevel)
-		level->render();
+		level->render(renderer);
 }
 
 bool State::gameOver()

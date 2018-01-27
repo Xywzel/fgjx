@@ -14,6 +14,7 @@ Game::Game()
 
 Game::~Game()
 {
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 	delete state;
@@ -35,6 +36,7 @@ bool Game::init()
 	surface = SDL_GetWindowSurface(window);
 	SDL_FillRect(surface, NULL, SDL_MapRGB(surface->format, 0xFF, 0xFF, 0xFF));
 	SDL_UpdateWindowSurface(window);
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	return true;
 }
 
@@ -86,6 +88,7 @@ void Game::update()
 
 void Game::render()
 {
-	state->render();
+	state->render(renderer);
 	SDL_UpdateWindowSurface(window);
 }
+

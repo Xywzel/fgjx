@@ -9,10 +9,9 @@ class PauseMenu : public Menu
 		virtual ~PauseMenu();
 		virtual void render();
 		virtual void update();
-		virtual bool isOpen();
 		virtual void show(int arg = 0);
 		bool shouldExit();
 	private:
-		bool open;
+		int score;
 };
 
