@@ -7,6 +7,7 @@ MainMenu::MainMenu()
 	, buttonStart()
 	, buttonQuit()
 	, selection()
+	, start(false)
 {
 }
 
@@ -34,7 +35,28 @@ void MainMenu::handleEvent(SDL_Event& event)
 {
 	if(event.type == SDL_KEYDOWN)
 	{
-		highlighted == StartButton;
+		switch(event.key.keysym.sym)
+		{
+			case SDLK_UP:
+			case SDLK_w:
+				highlighted = StartButton;
+				break;
+			case SDLK_DOWN:
+			case SDLK_s:
+				highlighted = QuitButton;
+				break;
+			case SDLK_SPACE:
+			case SDLK_RETURN:
+			case SDLK_KP_ENTER:
+				{
+					if(highlighted == StartButton)
+						start = true;
+					open = false;
+					break;
+				}
+			default:
+				break;
+		}
 	}
 }
 
@@ -45,7 +67,9 @@ void MainMenu::update()
 
 bool MainMenu::shouldStart()
 {
-	return open;
+	bool val = start;
+	start = false;
+	return val;
 }
 
 
