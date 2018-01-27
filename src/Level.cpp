@@ -1,5 +1,4 @@
 #include "Level.h"
-
 #include "SDL2/SDL.h"
 
 #include "Utils.h"
@@ -11,11 +10,14 @@ Level::Level()
 {
 	player.setXY(50, 50);
 	message = "No fucking clue.";
+	ctx = tsMakeContext(0, 44000, 15, 5, 5);
+	loaded = tsLoadWAV( "path_to_file/filename.wav" );
+	def = tsMakeDef( &loaded );
 }
 
 Level::~Level()
 {
-
+	tsShutdownContext(ctx);
 }
 
 void Level::handleEvent(SDL_Event& e)
@@ -34,7 +36,7 @@ void Level::handleEvent(SDL_Event& e)
 
 void Level::update(float deltaTime)
 {
-	(void)deltaTime;
+	tsPlayingSound* sound = tsPlaySound( ctx, def );
 }
 
 int Level::getScoreIncrease(){

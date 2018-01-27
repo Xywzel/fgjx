@@ -2,6 +2,7 @@
 #include "LTexture.h"
 #include "Player.h"
 #include "Object.h"
+#include "tinysound.h"
 #include <vector>
 
 struct SDL_Texture;
@@ -18,6 +19,10 @@ class Level
 	bool failed;
 	bool pause;
 	std::vector<Object> doors;
+	tsContext* ctx;
+	tsLoadedSound loaded;
+	tsPlaySoundDef def;
+	tsPlayingSound* sound;
 	Player player;
 	public:
 		std::string message;

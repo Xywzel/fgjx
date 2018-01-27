@@ -11,7 +11,7 @@ STD := -std=c++14
 DEBUG := -g
 WARNINGS = -pedantic -Wall -Wextra
 OPTIMIZE = -march=native -O3
-SDL_LIBS = -lSDL2_image
+SDL_LIBS = -lSDL2_image -lSDL2_mixer
 
 SDL_COMP = $(shell sdl2-config --cflags)
 SDL_LINK = $(shell sdl2-config --libs)
