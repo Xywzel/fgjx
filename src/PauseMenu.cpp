@@ -20,7 +20,7 @@ void PauseMenu::render(SDL_Renderer* renderer)
 	menuButton.render(300, 100);
 	continueButton.render(300, 400);
 	if(current == MenuButton)
-		selection.render(100, 200);
+		selection.render(100, 100);
 	else
 		selection.render(100, 400);
 }

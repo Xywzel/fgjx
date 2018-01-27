@@ -1,9 +1,13 @@
 #include "Level.h"
+
+#include "SDL2/SDL.h"
+
 #include "Utils.h"
 
 Level::Level()
 	: completed(false)
 	, failed(false)
+	, pause(false)
 {
 }
 
@@ -12,6 +16,20 @@ Level::~Level()
 	if(background.ready)
 	{
 		background.free();
+	}
+}
+
+void Level::handleEvent(SDL_Event& e)
+{
+	if(e.type == SDL_KEYDOWN)
+	{
+		switch(e.key.keysym.sym)
+		{
+			case SDLK_ESCAPE:
+				pause = true;
+			default:
+				break;
+		}
 	}
 }
 
@@ -25,7 +43,9 @@ int Level::getScoreIncrease(){
 }
 
 bool Level::menuOpened(){
-    return false;
+  bool val = pause;
+  pause = false;
+  return val;
 }
 
 bool Level::finished(){
