@@ -12,4 +12,5 @@ class Player
 		float getY();
 		void setXY(float x, float y);
 		void render(SDL_Renderer* renderer);
+		void update(float deltaTime);
 };

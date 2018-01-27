@@ -61,7 +61,7 @@ void Level::render(SDL_Renderer* renderer)
 	{
 		background.init(renderer, "background.png");
 	}
-	background.render(0,0);
+	background.render(0,0, 1.0f, 1.0f);
 	player.render(renderer);
 }
 

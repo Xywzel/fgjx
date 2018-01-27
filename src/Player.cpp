@@ -21,6 +21,9 @@ void Player::render(SDL_Renderer* renderer)
 	{
 		avatar.init(renderer, "player_idle.png");
 	}
-	avatar.render(playerX, playerY);
+	avatar.render(playerX, playerY, 0.25, 0.25);
 }
 
+void Player::update(float deltaTime)
+{
+}
