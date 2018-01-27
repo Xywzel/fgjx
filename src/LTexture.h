@@ -20,6 +20,7 @@ class LTexture
 
 		//Renders texture at given point
 		void render(float x, float y, float w, float h);
+		void render(float x, float y, float scale);
 
 		//Gets image dimensions
 		int getWidth();

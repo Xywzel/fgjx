@@ -143,7 +143,7 @@ void State::startGame()
 {
 	score = 0;
 	levelNumber = 0;
-	// level = createLevel(levelNumber);
+	level = new Level();
 }
 
 void State::nextLevel()

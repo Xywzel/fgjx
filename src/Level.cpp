@@ -9,8 +9,8 @@ Level::Level()
 	: completed(false)
 	, failed(false)
 	, pause(false)
+	, player()
 {
-	player.setXY(50, 50);
 	message = "No fucking clue.";
 	//Initialize SDL_mixer
 	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
@@ -57,10 +57,10 @@ void Level::handleEvent(SDL_Event& e)
 		{
 			case SDLK_ESCAPE:
 				pause = true;
-			default:
-				break;
+				return;
 		}
 	}
+	player.handleEvent(e);
 }
 
 void Level::update(float deltaTime)
@@ -87,6 +87,7 @@ void Level::update(float deltaTime)
 			Mix_PauseMusic();
 		}
 	}
+	player.update(deltaTime);
 }
 
 int Level::getScoreIncrease(){

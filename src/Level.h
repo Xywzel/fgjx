@@ -37,4 +37,12 @@ class Level
 		virtual bool isGameOver(); // Level has failed and game should end
 
 		static Level* createLevel(int level); // Returns new level
+	private:
+		std::string message;
+		LTexture background;
+		bool completed;
+		bool failed;
+		bool pause;
+		std::vector<Object> doors;
+		Player player;
 };
