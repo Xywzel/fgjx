@@ -1,9 +1,13 @@
 #include "Level.h"
+
+#include "SDL2/SDL.h"
+
 #include "Utils.h"
 
 Level::Level()
 	: completed(false)
 	, failed(false)
+	, pause(false)
 {
 	player.setXY(50, 50);
 	message = "No fucking clue.";
@@ -12,6 +16,20 @@ Level::Level()
 Level::~Level()
 {
 
+}
+
+void Level::handleEvent(SDL_Event& e)
+{
+	if(e.type == SDL_KEYDOWN)
+	{
+		switch(e.key.keysym.sym)
+		{
+			case SDLK_ESCAPE:
+				pause = true;
+			default:
+				break;
+		}
+	}
 }
 
 void Level::update(float deltaTime)
@@ -24,7 +42,9 @@ int Level::getScoreIncrease(){
 }
 
 bool Level::menuOpened(){
-    return false;
+  bool val = pause;
+  pause = false;
+  return val;
 }
 
 bool Level::finished(){
