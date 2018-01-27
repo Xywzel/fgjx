@@ -13,14 +13,7 @@ class Object;
 
 class Level
 {
-	LTexture background;
-	bool completed;
-	bool failed;
-	bool pause;
-	std::vector<Object> doors;
-	Player player;
 	public:
-		std::string message;
 		Level();
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);
@@ -33,4 +26,12 @@ class Level
 		virtual bool isGameOver(); // Level has failed and game should end
 
 		static Level* createLevel(int level); // Returns new level
+	private:
+		std::string message;
+		LTexture background;
+		bool completed;
+		bool failed;
+		bool pause;
+		std::vector<Object> doors;
+		Player player;
 };

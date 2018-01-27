@@ -69,7 +69,7 @@ void Game::getEvents()
 		{
 			running = false;
 		}
-		else if (e.type == SDL_KEYDOWN)
+		else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
 		{
 			state->handleEvent(e);
 		}
@@ -78,8 +78,8 @@ void Game::getEvents()
 
 void Game::update()
 {
-	uint32_t currentTime = SDL_GetTicks();
-	float dt = (float) (lastTime - currentTime) / 1000.0f;
+	unsigned int currentTime = SDL_GetTicks();
+	float dt = (currentTime - lastTime) / 1000.0f;
 	lastTime = currentTime;
 
 	state->update(dt);

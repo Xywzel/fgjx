@@ -8,8 +8,8 @@ Level::Level()
 	: completed(false)
 	, failed(false)
 	, pause(false)
+	, player()
 {
-	player.setXY(50, 50);
 	message = "No fucking clue.";
 }
 
@@ -26,15 +26,15 @@ void Level::handleEvent(SDL_Event& e)
 		{
 			case SDLK_ESCAPE:
 				pause = true;
-			default:
-				break;
+				return;
 		}
 	}
+	player.handleEvent(e);
 }
 
 void Level::update(float deltaTime)
 {
-	(void)deltaTime;
+	player.update(deltaTime);
 }
 
 int Level::getScoreIncrease(){
