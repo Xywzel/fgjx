@@ -16,12 +16,12 @@ class State {
 	private:
 		void startGame();
 		void nextLevel();
-		bool inMainMenu = true;
-		bool inPauseMenu = false;
-		bool inLevel = false;
-		bool inScoreScreen = false;
-		int levelNumber = 0;
-		int score = 0;
+		bool inMainMenu;
+		bool inPauseMenu;
+		bool inLevel;
+		bool inScoreScreen;
+		int levelNumber;
+		int score;
 		MainMenu* mainMenu;
 		PauseMenu* pauseMenu;
 		ScoreScreen* scoreScreen;

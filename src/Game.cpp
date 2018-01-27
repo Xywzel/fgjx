@@ -71,14 +71,10 @@ void Game::getEvents()
 
 void Game::update()
 {
-	if(keysDown[(int) Input::Key::Esc])
-	{
-		running = false;
-		return;
-	}
 	uint32_t currentTime = SDL_GetTicks();
 	float dt = (float) (lastTime - currentTime) / 1000.0f;
 	lastTime = currentTime;
+
 	state->update(dt);
 	if(state->gameOver())
 	{

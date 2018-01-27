@@ -8,11 +8,18 @@
 #include "Level.h"
 
 State::State()
+	: inMainMenu(true)
+	, inPauseMenu(false)
+	, inScoreScreen(false)
+	, inLevel(false)
+	, levelNumber(0)
+	, score(0)
 {
 	mainMenu = new MainMenu;
 	pauseMenu = new PauseMenu;
 	scoreScreen = new ScoreScreen;
 	level = new Level; //::createLevel(0);
+	mainMenu->show();
 }
 
 State::~State()
