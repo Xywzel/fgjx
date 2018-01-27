@@ -21,8 +21,8 @@ class State {
 		bool inScoreScreen = false;
 		int levelNumber = 0;
 		int score = 0;
-		MainMenu& mainMenu;
-		PauseMenu& pauseMenu;
-		ScoreScreen& scoreScreen;
-		Level& level;
+		MainMenu* mainMenu;
+		PauseMenu* pauseMenu;
+		ScoreScreen* scoreScreen;
+		Level* level;
 };

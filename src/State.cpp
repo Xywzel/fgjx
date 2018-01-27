@@ -5,15 +5,31 @@
 #include "PauseMenu.h"
 #include "Level.h"
 
+State::State()
+{
+	mainMenu = new MainMenu;
+	pauseMenu = new PauseMenu;
+	scoreScreen = new ScoreScreen;
+	level = Level::createLevel(0);
+}
+
+State::~State()
+{
+	delete mainMenu;
+	delete pauseMenu;
+	delete scoreScreen;
+	delete level;
+}
+
 void State::update(float deltaTime)
 {
 	if(inMainMenu)
 	{
-		mainMenu.update();
-		inMainMenu = mainMenu.isOpen();
+		mainMenu->update();
+		inMainMenu = mainMenu->isOpen();
 		if(!inMainMenu)
 		{
-			if(mainMenu.shouldStart())
+			if(mainMenu->shouldStart())
 			{
 				inPauseMenu = false;
 				inScoreScreen = false;
@@ -31,16 +47,16 @@ void State::update(float deltaTime)
 
 	else if(inPauseMenu)
 	{
-		pauseMenu.update();
-		inPauseMenu = pauseMenu.isOpen();
+		pauseMenu->update();
+		inPauseMenu = pauseMenu->isOpen();
 		if(!inPauseMenu)
 		{
-			if(pauseMenu.shouldExit())
+			if(pauseMenu->shouldExit())
 			{
 				inMainMenu = true;
 				inScoreScreen = false;
 				inLevel = false;
-				mainMenu.show();
+				mainMenu->show();
 			}
 			else
 			{
@@ -53,31 +69,31 @@ void State::update(float deltaTime)
 
 	else if(inScoreScreen)
 	{
-		scoreScreen.update();
-		inScoreScreen = scoreScreen.isOpen();
+		scoreScreen->update();
+		inScoreScreen = scoreScreen->isOpen();
 		if(inScoreScreen)
 		{
 			inMainMenu = true;
-			mainMenu.show();
+			mainMenu->show();
 		}
 	}
 
 	else if(inLevel)
 	{
-		level.update();
-		score += level.getScoreIncrease();
-		if(level.menuOpened())
+		level->update();
+		score += level->getScoreIncrease();
+		if(level->menuOpened())
 		{
 			inPauseMenu = true;
-			pauseMenu.show(score);
+			pauseMenu->show(score);
 		}
-		if(level.finished())
+		if(level->finished())
 			nextLevel();
-		if(level.isGameOver())
+		if(level->isGameOver())
 		{
 			inLevel = false;
 			inScoreScreen = true;
-			scoreScreen.show(score);
+			scoreScreen->show(score);
 		}
 	}
 }
@@ -85,13 +101,13 @@ void State::update(float deltaTime)
 void State::render()
 {
 	if (inMainMenu)
-		mainMenu.render();
+		mainMenu->render();
 	else if (inPauseMenu)
-		pauseMenu.render();
+		pauseMenu->render();
 	else if (inScoreScreen)
-		scoreScreen.render();
+		scoreScreen->render();
 	else if (inLevel)
-		level.render();
+		level->render();
 }
 
 bool State::gameOver()
@@ -109,5 +125,6 @@ void State::startGame()
 void State::nextLevel()
 {
 	levelNumber++;
-	// level = createLevel(levelNumber);
+	delete level;
+	level = Level::createLevel(levelNumber);
 }
