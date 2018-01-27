@@ -18,7 +18,7 @@ void Level::update(float deltaTime)
 }
 
 int Level::getScoreIncrease(){
-return 0;
+	return 0;
 }
 
 bool Level::menuOpened(){
