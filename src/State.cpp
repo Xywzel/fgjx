@@ -1,5 +1,7 @@
 #include "State.h"
 
+#include <iostream>
+
 #include <SDL2/SDL.h>
 
 #include "MainMenu.h"
@@ -8,11 +10,18 @@
 #include "Level.h"
 
 State::State()
+	: inMainMenu(true)
+	, inPauseMenu(false)
+	, inScoreScreen(false)
+	, inLevel(false)
+	, levelNumber(0)
+	, score(0)
 {
 	mainMenu = new MainMenu;
 	pauseMenu = new PauseMenu;
 	scoreScreen = new ScoreScreen;
-	level = Level::createLevel(0);
+	level = new Level; //::createLevel(0);
+	mainMenu->show();
 }
 
 State::~State()
@@ -114,7 +123,7 @@ void State::render(SDL_Renderer* renderer)
 
 bool State::gameOver()
 {
-	return (!inMainMenu || !inPauseMenu || !inScoreScreen || !inLevel);
+	return !(inMainMenu || inPauseMenu || inScoreScreen || inLevel);
 }
 
 void State::startGame()
@@ -128,5 +137,5 @@ void State::nextLevel()
 {
 	levelNumber++;
 	delete level;
-	level = Level::createLevel(levelNumber);
+	level = new Level();//::createLevel(levelNumber);
 }

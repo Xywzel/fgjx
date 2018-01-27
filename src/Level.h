@@ -1,12 +1,14 @@
 #pragma once
-#include <SDL2/SDL.h>
+
+struct SDL_Texture;
+struct SDL_Renderer;
 
 class Player;
 class Object;
 
 class Level
 {
-	SDL_Texture* background = NULL;
+	SDL_Texture* background;
 	bool completed;
 	bool failed;
 	public:

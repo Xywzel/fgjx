@@ -14,7 +14,7 @@ bool Menu::isOpen()
 	return open;
 }
 
-Menu::show(int /*arg*/)
+void Menu::show(int /*arg*/)
 {
-	open = true
+	open = true;
 }

@@ -6,8 +6,8 @@
 
 namespace Utils
 {
-    SDL_Texture* LoadTexture(std::string path, SDL_Renderer* renderer)
-	{      
+	SDL_Texture* LoadTexture(std::string path, SDL_Renderer* renderer)
+	{
 		SDL_Texture* newTexture  = NULL;
 		SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 		if( loadedSurface == NULL )
