@@ -24,6 +24,7 @@ class MainMenu : public Menu
 		LTexture buttonStart;
 		LTexture buttonQuit;
 		LTexture selection;
+		LTexture intro;
 		bool start;
 };
 
