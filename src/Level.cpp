@@ -104,6 +104,15 @@ void Level::update(float deltaTime)
 	player.update(deltaTime);
 	for(auto door : doors)
 		door.update(deltaTime);
+	{
+		float px, py, dx, dy;
+		px = player.getX();
+		py = player.getY();
+		dx = doors[0].getX();
+		dy = doors[0].getY();
+		if((px - dx) + (py - dy) < 0.2f)
+			completed = true;
+	}
 }
 
 int Level::getScoreIncrease(){
