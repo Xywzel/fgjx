@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <cmath>
 
 Player::Player()
 	: x(0.5f)
@@ -17,7 +18,7 @@ Player::~Player()
 
 void Player::update(float deltaTime)
 {
-	float norm = (std::abs(xSpeed) > 0.01f && std::abs(ySpeed) > 0.01f) ? 0.707f : 1.0f;
+	float norm = (std::fabs(xSpeed) > 0.01f && std::fabs(ySpeed) > 0.01f) ? 0.707f : 1.0f;
 	x += norm * xSpeed * deltaTime;
 	y += norm * ySpeed * deltaTime;
 }

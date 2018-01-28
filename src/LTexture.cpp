@@ -84,7 +84,7 @@ void LTexture::render(float x, float y, float scale)
 	int imageHeight = 800;
 	int xp = (int) ((x*imageWidth) - (scale*mWidth*0.5f));
 	int yp = (int) ((y*imageHeight) - (scale*mHeight*0.5f));
-	SDL_Rect renderQuad = { xp, yp, scale*mWidth, scale*mHeight};
+	SDL_Rect renderQuad = { xp, yp, (int)scale*mWidth, (int)scale*mHeight};
 	SDL_RenderCopy( renderer, mTexture, NULL, &renderQuad );
 }
 

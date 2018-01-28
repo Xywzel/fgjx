@@ -14,15 +14,7 @@ class Object;
 
 class Level
 {
-	LTexture background;
-	bool completed;
-	bool failed;
-	bool pause;
-	std::vector<Object> doors;
-	Player player;
-	Mix_Music* music;
 	public:
-		std::string message;
 		std::string morseCode;
 		std::vector<float> signals;
 		Level();
@@ -38,6 +30,7 @@ class Level
 
 		static Level* createLevel(int level); // Returns new level
 	private:
+		Mix_Music* music;
 		std::string message;
 		LTexture background;
 		bool completed;
