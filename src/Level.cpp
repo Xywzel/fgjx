@@ -45,6 +45,7 @@ Level::Level()
 
 Level::~Level()
 {
+	Mix_HaltMusic();
 	Mix_FreeMusic(music);
 	music = NULL;
 }
