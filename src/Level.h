@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Object.h"
 #include <vector>
+#include <queue>
 #include "SDL2/SDL_mixer.h"
 
 struct SDL_Texture;
@@ -15,8 +16,6 @@ class Object;
 class Level
 {
 	public:
-		std::string morseCode;
-		std::vector<float> signals;
 		Level();
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);
@@ -30,9 +29,12 @@ class Level
 
 		static Level* createLevel(int level); // Returns new level
 	private:
+		std::queue<float> signals;
+		std::string morseCode;
 		Mix_Music* music;
 		std::string message;
 		LTexture background;
+		float counter;
 		bool completed;
 		bool failed;
 		bool pause;
