@@ -9,9 +9,10 @@ Level::Level()
 	: completed(false)
 	, failed(false)
 	, pause(false)
+	, counter(0.0f)
 	, player()
 {
-	message = "No fucking clue.";
+	message = "NO FUCKING CLUE.";
 	//Initialize SDL_mixer
 	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
 	{
@@ -29,13 +30,13 @@ Level::Level()
 		switch(*it)
 		{
 			case '.':
-				signals.push_back(Morse::dot);
+				signals.push(Morse::dot);
 				break;
 			case '-':
-				signals.push_back(Morse::dash);
+				signals.push(Morse::dash);
 				break;
 			case ' ':
-				signals.push_back(Morse::pause);
+				signals.push(Morse::pause);
 				break;
 			default:
 				break;
@@ -71,19 +72,22 @@ void Level::update(float deltaTime)
 		//Play the noise
 		Mix_PlayMusic( music, -1 );
 	}
-	//If noise is being played
-
-	else
-	{
+	counter -= deltaTime;
+	if(counter <= 0.0f){
+		if(!signals.empty()){
+			counter = signals.front();
+			signals.pop();
+		}
 		//If the noise is paused
 		if( Mix_PausedMusic() == 1 )
 		{
 			//Resume the noise
 			Mix_ResumeMusic();
 		}
-		//If the noise is playing
-		else
-		{
+	}
+	else
+	{
+		if( Mix_PausedMusic() == 0 ){
 			//Pause the noise
 			Mix_PauseMusic();
 		}
