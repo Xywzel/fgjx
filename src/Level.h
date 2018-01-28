@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <queue>
+#include <utility>
 
 #include <SDL2/SDL_mixer.h>
 
@@ -19,7 +20,7 @@ class Object;
 class Level
 {
 	public:
-		Level(std::string msg);
+		Level(std::string msg, std::vector<std::pair<float, float>> coords);
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);
 		virtual void update(float deltaTime); // Update level and all objects on it 
