@@ -20,7 +20,7 @@ State::State()
 	mainMenu = new MainMenu;
 	pauseMenu = new PauseMenu;
 	scoreScreen = new ScoreScreen;
-	level = new Level; //::createLevel(0);
+	level = Level::createLevel(0);
 	mainMenu->show();
 }
 
@@ -95,7 +95,7 @@ void State::update(float deltaTime)
 	{
 		scoreScreen->update();
 		inScoreScreen = scoreScreen->isOpen();
-		if(inScoreScreen)
+		if(!inScoreScreen)
 		{
 			inMainMenu = true;
 			mainMenu->show();
@@ -143,12 +143,12 @@ void State::startGame()
 {
 	score = 0;
 	levelNumber = 0;
-	level = new Level();
+	level = Level::createLevel(levelNumber);
 }
 
 void State::nextLevel()
 {
 	levelNumber++;
 	delete level;
-	level = new Level();//::createLevel(levelNumber);
+	level = Level::createLevel(levelNumber);
 }
