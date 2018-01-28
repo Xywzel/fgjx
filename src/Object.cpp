@@ -32,7 +32,7 @@ void Object::render(SDL_Renderer* renderer)
 	{
 		sprite.init(renderer, "door_front.png");
 	}
-	sprite.render(x, y, 0.1f);
+	sprite.render(x, y, 0.2f);
 }
 
 void Object::update(float /*deltaTime*/)

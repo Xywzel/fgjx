@@ -76,6 +76,7 @@ void Level::handleEvent(SDL_Event& e)
 
 void Level::update(float deltaTime)
 {
+	std::cout << "Delta: " << deltaTime << std::endl;
 	if( Mix_PlayingMusic() == 0 )
 	{
 		//Play the noise
@@ -86,6 +87,7 @@ void Level::update(float deltaTime)
 		if(!signals.empty()){
 			counter = signals.front();
 			signals.pop();
+			std::cout << counter << std::endl;
 		}
 		//If the noise is paused
 		if( Mix_PausedMusic() == 1 )
