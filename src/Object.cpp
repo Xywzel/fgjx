@@ -34,5 +34,5 @@ void Object::render(SDL_Renderer* renderer)
 	{
 		sprite.init(renderer, "door_front.png");
 	}
-	sprite.render(objectX, objectY, 0.25, 0.25);
+	sprite.render(objectX, objectY, 0.25f, 0.25f);
 }

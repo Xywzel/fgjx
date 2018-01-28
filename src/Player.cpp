@@ -9,6 +9,7 @@ Player::Player()
 	, y(0.5f)
 	, xSpeed(0.0f)
 	, ySpeed(0.0f)
+	, mirror(false)
 {
 }
 
@@ -29,7 +30,7 @@ void Player::render(SDL_Renderer* renderer)
 	{
 		avatar.init(renderer, "player_idle.png");
 	}
-	avatar.render(x, y, 0.1);
+	avatar.render(x, y, 0.1, mirror);
 }
 
 void Player::handleEvent(SDL_Event& e)
@@ -46,9 +47,11 @@ void Player::handleEvent(SDL_Event& e)
 				break;
 			case SDLK_a:
 				xSpeed = -0.1f;
+				mirror = true;
 				break;
 			case SDLK_d:
 				xSpeed = 0.1f;
+				mirror = false;
 				break;
 		}
 	}
