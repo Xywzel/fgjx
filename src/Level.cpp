@@ -8,9 +8,9 @@
 Level::Level()
 	: completed(false)
 	, failed(false)
-	, pause(false)
 	, counter(0.0f)
 	, player()
+	, pause(false)
 {
 	message = "NO FUCKING CLUE.";
 	//Initialize SDL_mixer
