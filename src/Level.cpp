@@ -7,7 +7,7 @@
 
 #include "Morse.h"
 
-Level::Level(std::string msg)
+Level::Level(std::string msg, std::vector<std::pair<float, float>> coords)
 	: completed(false)
 	, failed(false)
 	, pause(false)
@@ -48,12 +48,8 @@ Level::Level(std::string msg)
 		}
 	}
 	// Place level objects
-	{
-		Object door(Object::Type::Door, 0.1f, 0.1f);
-		doors.push_back(door);
-	}
-	{
-		Object door(Object::Type::Door, 0.9f, 0.9f);
+	for(auto coord : coords){
+		Object door(Object::Type::Door, coord.first, coord.second);
 		doors.push_back(door);
 	}
 }
@@ -164,10 +160,42 @@ void Level::render(SDL_Renderer* renderer)
 
 Level* Level::createLevel(int levelNumber)
 {
+	std::vector<std::pair<float, float>> coords;
 	switch(levelNumber)
 	{
 		case 0:
+			coords.push_back(std::pair<float, float>(0.1f, 0.1f));
+			return new Level("FIND THE DOOR.", coords);
+		case 1:
+			coords.push_back(std::pair<float, float>(0.5f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.5f));
+			return new Level("GO SOUHT.", coords);
+		case 2:
+			coords.push_back(std::pair<float, float>(0.1f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.1f));
+			return new Level("SOUTH WEST I THINK.", coords);
+		case 3:
+			coords.push_back(std::pair<float, float>(0.1f, 0.1f));
+			coords.push_back(std::pair<float, float>(0.1f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.1f));
+			return new Level("NOW NORTH WEST.", coords);
+		case 4:
+			coords.push_back(std::pair<float, float>(0.9f, 0.5f));
+			coords.push_back(std::pair<float, float>(0.5f, 0.1f));
+			coords.push_back(std::pair<float, float>(0.5f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.1f, 0.5f));
+			return new Level("EAST DOOR USE THE EAST DOOR.", coords);
+		case 5:
+			coords.push_back(std::pair<float, float>(0.9f, 0.9f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.5f));
+			coords.push_back(std::pair<float, float>(0.9f, 0.1f));
+			coords.push_back(std::pair<float, float>(0.1f, 0.1f));
+			coords.push_back(std::pair<float, float>(0.1f, 0.5f));
+			coords.push_back(std::pair<float, float>(0.1f, 0.9f));
+			return new Level("ALMOST THERE  USE THE SOUTH EAST DOOR .", coords);
 		default:
-			return new Level("FIND THE DOOR.");
+			return new Level("FIND THE DOOR.", coords);
 	}
 }
