@@ -20,4 +20,6 @@ class Player
 		float xSpeed, ySpeed;
 		LTexture avatar;
 		bool mirror;
+		//Scene sprites
+		SDL_Rect spriteClips[ 2 ];
 };
