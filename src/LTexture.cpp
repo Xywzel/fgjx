@@ -73,7 +73,7 @@ void LTexture::render(float x, float y, float w, float h)
 	//Set rendering space and render to screen
 	int imageWidth = 1280;
 	int imageHeight = 800;
-	SDL_Rect renderQuad = { (int)x*imageWidth, (int)y*imageHeight, (int)w*imageWidth, (int)h*imageHeight };
+	SDL_Rect renderQuad = { (int) (x*imageWidth), (int) (y*imageHeight), (int) (w*imageWidth), (int) (h*imageHeight) };
 	SDL_RenderCopy( renderer, mTexture, NULL, &renderQuad );
 }
 
@@ -84,7 +84,7 @@ void LTexture::render(float x, float y, float scale)
 	int imageHeight = 800;
 	int xp = (int) ((x*imageWidth) - (scale*mWidth*0.5f));
 	int yp = (int) ((y*imageHeight) - (scale*mHeight*0.5f));
-	SDL_Rect renderQuad = { xp, yp, (int)scale*mWidth, (int)scale*mHeight};
+	SDL_Rect renderQuad = { xp, yp, (int) (scale*mWidth), (int) (scale*mHeight)};
 	SDL_RenderCopy( renderer, mTexture, NULL, &renderQuad );
 }
 
