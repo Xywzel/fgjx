@@ -4,9 +4,9 @@
 #include <string>
 
 namespace Morse {
-	const float dot = 0.2f;
-	const float dash = 0.6f;
-	const float pause = 0.6f;
+	const float dot = 0.1f;
+	const float dash = 0.3f;
+	const float pause = 0.3f;
     static std::vector<std::string> alphabet( {
         //A-Z
         ".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..",
