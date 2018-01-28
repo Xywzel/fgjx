@@ -29,15 +29,15 @@ class Level
 
 		static Level* createLevel(int level); // Returns new level
 	private:
-		std::queue<float> signals;
-		std::string morseCode;
-		Mix_Music* music;
-		std::string message;
-		LTexture background;
-		float counter;
 		bool completed;
 		bool failed;
 		bool pause;
-		std::vector<Object> doors;
+		float counter;
 		Player player;
+		std::vector<Object> doors;
+		std::queue<float> signals;
+		std::string message;
+		std::string morseCode;
+		Mix_Music* music;
+		LTexture background;
 };
