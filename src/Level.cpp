@@ -24,7 +24,7 @@ Level::Level()
 		std::cout << "Failed to load beat music! SDL_mixer Error: " << Mix_GetError() << std::endl;
 	}
 	morseCode = Morse::encode(message);
-    for (std::string::iterator it=morseCode.begin(); it!=morseCode.end();++it)
+	for (std::string::iterator it=morseCode.begin(); it!=morseCode.end();++it)
 	{
 		switch(*it)
 		{

@@ -19,4 +19,5 @@ class Player
 		float x, y;
 		float xSpeed, ySpeed;
 		LTexture avatar;
+		bool mirror;
 };

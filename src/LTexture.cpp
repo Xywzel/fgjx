@@ -77,7 +77,7 @@ void LTexture::render(float x, float y, float w, float h)
 	SDL_RenderCopy( renderer, mTexture, NULL, &renderQuad );
 }
 
-void LTexture::render(float x, float y, float scale)
+void LTexture::render(float x, float y, float scale, bool mirror)
 {
 	//Set rendering space and render to screen
 	int imageWidth = 1280;
@@ -85,7 +85,7 @@ void LTexture::render(float x, float y, float scale)
 	int xp = (int) ((x*imageWidth) - (scale*mWidth*0.5f));
 	int yp = (int) ((y*imageHeight) - (scale*mHeight*0.5f));
 	SDL_Rect renderQuad = { xp, yp, (int) (scale*mWidth), (int) (scale*mHeight)};
-	SDL_RenderCopy( renderer, mTexture, NULL, &renderQuad );
+	SDL_RenderCopyEx( renderer, mTexture, NULL, &renderQuad, 0.0f, NULL, (mirror ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE) );
 }
 
 int LTexture::getWidth()
