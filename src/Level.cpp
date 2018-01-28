@@ -41,6 +41,15 @@ Level::Level()
 				break;
 		}
 	}
+	// Place level objects
+	{
+		Object door(Object::Type::Door, 0.1f, 0.1f);
+		doors.push_back(door);
+	}
+	{
+		Object door(Object::Type::Door, 0.9f, 0.9f);
+		doors.push_back(door);
+	}
 }
 
 Level::~Level()
@@ -89,6 +98,8 @@ void Level::update(float deltaTime)
 		}
 	}
 	player.update(deltaTime);
+	for(auto door : doors)
+		door.update(deltaTime);
 }
 
 int Level::getScoreIncrease(){
@@ -116,6 +127,8 @@ void Level::render(SDL_Renderer* renderer)
 		background.init(renderer, "board.png");
 	}
 	background.render(0,0, 1.0f, 1.0f);
+	for(auto door : doors)
+		door.render(renderer);
 	player.render(renderer);
 }
 

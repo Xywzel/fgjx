@@ -1,31 +1,29 @@
 #include "Object.h"
 
 Object::Object(Object::Type type, float x, float y)
-: objectType(type)
-, objectX(x)
-, objectY(y)
+: type(type)
+, x(x)
+, y(y)
 {
-	
 }
 
 Object::~Object()
 {
-
 }
 
 float Object::getX()
 {
-	return objectX;
+	return x;
 }
 
 float Object::getY()
 {
-	return objectY;
+	return y;
 }
 
 Object::Type Object::getType()
 {
-	return objectType;
+	return type;
 }
 
 void Object::render(SDL_Renderer* renderer)
@@ -34,5 +32,10 @@ void Object::render(SDL_Renderer* renderer)
 	{
 		sprite.init(renderer, "door_front.png");
 	}
-	sprite.render(objectX, objectY, 0.25f, 0.25f);
+	sprite.render(x, y, 0.1f);
+}
+
+void Object::update(float /*deltaTime*/)
+{
+	
 }
