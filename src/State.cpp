@@ -119,14 +119,14 @@ void State::update(float deltaTime)
 			{
 				inLevel = false;
 				inScoreScreen = true;
-				scoreScreen->show(score);
+				scoreScreen->show(levelNumber);
 			}
 		}
 		if(level->isGameOver())
 		{
 			inLevel = false;
 			inScoreScreen = true;
-			scoreScreen->show(score);
+			scoreScreen->show(0);
 		}
 	}
 }

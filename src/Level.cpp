@@ -133,17 +133,19 @@ int Level::getScoreIncrease(){
 }
 
 bool Level::menuOpened(){
-  bool val = pause;
-  pause = false;
-  return val;
+	bool val = pause;
+	pause = false;
+	return val;
 }
 
 bool Level::finished(){
-    return completed;
+	bool val = completed;
+	completed = false;
+	return val;
 }
 
 bool Level::isGameOver(){
-    return failed;
+	return failed;
 }
 
 void Level::render(SDL_Renderer* renderer)

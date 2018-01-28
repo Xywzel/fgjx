@@ -17,7 +17,7 @@ std::string Morse::encode(std::string message)
             return "";
         rString.append(" ");
     }
-    std::cout << "Output: " << rString << std::endl;
+//    std::cout << "Output: " << rString << std::endl;
     return rString;
 }
 
