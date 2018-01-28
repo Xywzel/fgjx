@@ -41,7 +41,7 @@ void Player::render(SDL_Renderer* renderer)
 		spriteClips[1].h = 512;
 	}
 
-	if(std::fabs(xSpeed) > 0.0f || std::fabs(ySpeed) > 0.0f)
+	if( ((int)(x*10)^(int)(y*11))&1 && (std::fabs(xSpeed) > 0.0f || std::fabs(ySpeed) > 0.0f))
 	{
 		avatar.render(x, y, 0.2, mirror, &spriteClips[1]);
 	}
