@@ -28,9 +28,27 @@ void Player::render(SDL_Renderer* renderer)
 {
 	if(!avatar.ready)
 	{
-		avatar.init(renderer, "player_idle.png");
+		avatar.init(renderer, "player.png");
+		// first sprite
+		spriteClips[0].x = 0;
+		spriteClips[0].y = 0;
+		spriteClips[0].w = 337;
+		spriteClips[0].h = 512;
+		// second sprite
+		spriteClips[1].x = 338;
+		spriteClips[1].y = 0;
+		spriteClips[1].w = 362;
+		spriteClips[1].h = 512;
 	}
-	avatar.render(x, y, 0.1, mirror);
+
+	if(std::fabs(xSpeed) > 0.0f || std::fabs(ySpeed) > 0.0f)
+	{
+		avatar.render(x, y, 0.2, mirror, &spriteClips[1]);
+	}
+	else
+	{
+		avatar.render(x, y, 0.2, mirror, &spriteClips[0]);
+	}
 }
 
 void Player::handleEvent(SDL_Event& e)
