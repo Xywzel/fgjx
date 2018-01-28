@@ -18,5 +18,4 @@ class ScoreScreen : public Menu
 		LTexture background;
 		LTexture victory;
 		LTexture loose;
-		LTexture guide;
 };

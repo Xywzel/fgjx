@@ -1,10 +1,13 @@
 #pragma once
-#include "LTexture.h"
-#include "Player.h"
-#include "Object.h"
 #include <vector>
+#include <string>
 #include <queue>
-#include "SDL2/SDL_mixer.h"
+
+#include <SDL2/SDL_mixer.h>
+
+#include "LTexture.h"
+#include "Object.h"
+#include "Player.h"
 
 struct SDL_Texture;
 struct SDL_Renderer;
@@ -16,7 +19,7 @@ class Object;
 class Level
 {
 	public:
-		Level();
+		Level(std::string msg);
 		virtual ~Level();
 		virtual void handleEvent(SDL_Event& e);
 		virtual void update(float deltaTime); // Update level and all objects on it 
@@ -32,6 +35,7 @@ class Level
 		bool completed;
 		bool failed;
 		bool pause;
+		int score;
 		float counter;
 		Player player;
 		std::vector<Object> doors;

@@ -1,20 +1,23 @@
 #include "Level.h"
-#include "Morse.h"
-#include "SDL2/SDL.h"
-#include <SDL2/SDL_image.h>
+
 #include <iostream>
+#include <cmath>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
+#include "Morse.h"
 
-Level::Level()
+Level::Level(std::string msg)
 	: completed(false)
 	, failed(false)
 	, pause(false)
+	, score(0)
 	, counter(0.0f)
 	, player()
 	, doors()
 	, signals()
+	, message(msg)
 {
-	message = "NO FUCKING CLUE.";
 	//Initialize SDL_mixer
 	if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
 	{
@@ -106,19 +109,31 @@ void Level::update(float deltaTime)
 	player.update(deltaTime);
 	for(auto door : doors)
 		door.update(deltaTime);
-	{
+	for(uint32_t i = 0; i < doors.size(); ++i){
 		float px, py, dx, dy;
 		px = player.getX();
 		py = player.getY();
-		dx = doors[0].getX();
-		dy = doors[0].getY();
-		if((px - dx) + (py - dy) < 0.2f)
-			completed = true;
+		dx = doors[i].getX();
+		dy = doors[i].getY();
+		if(std::fabs(px - dx) + std::fabs(py - dy) < 0.2f)
+		{
+			if(i == 0)
+			{
+				completed = true;
+				if(score == 0) score = 1;
+			}
+			else
+			{
+				failed = true;
+			}
+		}
 	}
 }
 
 int Level::getScoreIncrease(){
-	return 0;
+	int val = score;
+	score = 0;
+	return val;
 }
 
 bool Level::menuOpened(){
@@ -147,3 +162,12 @@ void Level::render(SDL_Renderer* renderer)
 	player.render(renderer);
 }
 
+Level* Level::createLevel(int levelNumber)
+{
+	switch(levelNumber)
+	{
+		case 0:
+		default:
+			return new Level("FIND THE DOOR.");
+	}
+}
