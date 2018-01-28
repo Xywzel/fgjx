@@ -112,7 +112,16 @@ void State::update(float deltaTime)
 			pauseMenu->show(score);
 		}
 		if(level->finished())
-			nextLevel();
+		{
+			if(levelNumber < 5)
+				nextLevel();
+			else
+			{
+				inLevel = false;
+				inScoreScreen = true;
+				scoreScreen->show(score);
+			}
+		}
 		if(level->isGameOver())
 		{
 			inLevel = false;
