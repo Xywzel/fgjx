@@ -8,9 +8,9 @@
 Level::Level()
 	: completed(false)
 	, failed(false)
-	, pause(false)
 	, counter(0.0f)
 	, player()
+	, pause(false)
 {
 	message = "NO FUCKING CLUE.";
 	//Initialize SDL_mixer
@@ -41,6 +41,15 @@ Level::Level()
 			default:
 				break;
 		}
+	}
+	// Place level objects
+	{
+		Object door(Object::Type::Door, 0.1f, 0.1f);
+		doors.push_back(door);
+	}
+	{
+		Object door(Object::Type::Door, 0.9f, 0.9f);
+		doors.push_back(door);
 	}
 }
 
@@ -93,6 +102,17 @@ void Level::update(float deltaTime)
 		}
 	}
 	player.update(deltaTime);
+	for(auto door : doors)
+		door.update(deltaTime);
+	{
+		float px, py, dx, dy;
+		px = player.getX();
+		py = player.getY();
+		dx = doors[0].getX();
+		dy = doors[0].getY();
+		if((px - dx) + (py - dy) < 0.2f)
+			completed = true;
+	}
 }
 
 int Level::getScoreIncrease(){
@@ -120,6 +140,8 @@ void Level::render(SDL_Renderer* renderer)
 		background.init(renderer, "board.png");
 	}
 	background.render(0,0, 1.0f, 1.0f);
+	for(auto door : doors)
+		door.render(renderer);
 	player.render(renderer);
 }
 
